@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class GeneralJournal(models.Model):
     _name = 'general.journal'
@@ -8,6 +8,31 @@ class GeneralJournal(models.Model):
     date = fields.Date(string="Date", required=True)
     journal_id = fields.Many2one('account.journal', string="Journal", required=True)
     line_ids = fields.One2many('general.journal.line', 'journal_id', string="Journal Lines")
+    move_id = fields.Many2one('account.move', string="Posted Move", readonly=True)
+
+    def action_post(self):
+        """Create and post an account.move from this general journal"""
+        for journal in self:
+            move_vals = {
+                'ref': journal.name,
+                'date': journal.date,
+                'journal_id': journal.journal_id.id,
+                'line_ids': [],
+            }
+            lines = []
+            for line in journal.line_ids:
+                lines.append((0, 0, {
+                    'account_id': line.account_id.id,
+                    'partner_id': line.partner_id.id if line.partner_id else False,
+                    'name': line.description or journal.name,
+                    'debit': line.debit,
+                    'credit': line.credit,
+                }))
+            move_vals['line_ids'] = lines
+            move = self.env['account.move'].create(move_vals)
+            move.action_post()
+            journal.move_id = move.id
+
 
 class GeneralJournalLine(models.Model):
     _name = 'general.journal.line'
