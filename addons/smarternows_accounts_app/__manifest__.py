@@ -7,6 +7,9 @@
         into a unified accounting view for easier reporting and management.
     """,
     'author': 'Jonathan Karimi Kiranga',
+    'maintainer': 'Jonathan Karimi Kiranga',
+    'website': 'https://smarternows.com',  # replace with your actual site if different
+    'license': 'LGPL-3',
     'category': 'Accounting',
     'depends': ['sale', 'purchase', 'account', 'account_asset'],
     'data': [
@@ -25,6 +28,14 @@
         'reports/balance_sheet_report.xml',
         'reports/balance_sheet_template.xml',
     ],
+    'demo': [
+        'demo/demo.xml',
+    ],
+    'images': [
+        'static/description/icon.png',
+        'static/description/banner.png',
+    ],
     'installable': True,
     'application': True,
+    'auto_install': False,
 }
