@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 class GeneralJournal(models.Model):
     _name = 'general.journal'
@@ -10,9 +11,20 @@ class GeneralJournal(models.Model):
     line_ids = fields.One2many('general.journal.line', 'journal_id', string="Journal Lines")
     move_id = fields.Many2one('account.move', string="Posted Move", readonly=True)
 
+    @api.constrains('line_ids')
+    def _check_balance(self):
+        for journal in self:
+            total_debit = sum(line.debit for line in journal.line_ids)
+            total_credit = sum(line.credit for line in journal.line_ids)
+            if round(total_debit, 2) != round(total_credit, 2):
+                raise ValidationError(
+                    "Journal is not balanced: Debits (%.2f) ≠ Credits (%.2f)" % (total_debit, total_credit)
+                )
+
     def action_post(self):
         """Create and post an account.move from this general journal"""
         for journal in self:
+            # Constraint already ensures balance
             move_vals = {
                 'ref': journal.name,
                 'date': journal.date,
