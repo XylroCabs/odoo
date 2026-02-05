@@ -24,4 +24,10 @@
     <menuitem id="menu_sacco_reports"
               name="Reports"
               parent="menu_sacco_root"/>
+    
+    <menuitem id="menu_sacco_arrears"
+          name="Arrears Report"
+          parent="menu_sacco_reports"
+          action="action_sacco_arrears"/>
+
 </odoo>
