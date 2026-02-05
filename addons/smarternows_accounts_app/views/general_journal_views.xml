@@ -9,7 +9,6 @@
                         <field name="name"/>
                         <field name="date"/>
                         <field name="journal_id"/>
-                        <field name="move_id" readonly="1"/>
                     </group>
                     <notebook>
                         <page string="Lines">
@@ -25,6 +24,12 @@
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_move" type="object"
+                            class="oe_stat_button" icon="fa-book">
+                        <field name="move_id" widget="statinfo" string="Ledger Entry"/>
+                    </button>
+                </div>
                 <footer>
                     <button name="action_post" type="object" string="Post to Ledger" class="btn-primary"/>
                     <button string="Cancel" class="btn-secondary" special="cancel"/>
