@@ -1,25 +1,51 @@
 <odoo>
     <template id="bank_reconciliation_template">
         <t t-call="web.html_container">
-            <t t-foreach="doc.reconciled" t-as="line">
-                <div>
-                    <strong>Reconciled:</strong>
-                    <span t-esc="line['date']"/> -
-                    <span t-esc="line['name']"/> -
-                    <span t-esc="line['partner']"/> -
-                    <span t-esc="line['amount']"/> -
-                    <span t-esc="line['move']"/>
-                </div>
-            </t>
-            <t t-foreach="doc.unreconciled" t-as="line">
-                <div>
-                    <strong>Unreconciled:</strong>
-                    <span t-esc="line['date']"/> -
-                    <span t-esc="line['name']"/> -
-                    <span t-esc="line['partner']"/> -
-                    <span t-esc="line['amount']"/>
-                </div>
-            </t>
+            <t t-set="doc" t-value="doc"/>
+            <div class="page">
+                <h2>Bank Reconciliation Report</h2>
+                <p><strong>Statement:</strong> <span t-esc="doc['statement']"/></p>
+                <p><strong>Date:</strong> <span t-esc="doc['date']"/></p>
+
+                <!-- Summary Section -->
+                <h3>Summary</h3>
+                <table class="table table-sm">
+                    <tr><td>Opening Balance</td><td><span t-esc="doc['opening_balance']"/></td></tr>
+                    <tr><td>Closing Balance</td><td><span t-esc="doc['closing_balance']"/></td></tr>
+                    <tr><td>Total Reconciled</td><td><span t-esc="doc['reconciled_total']"/></td></tr>
+                    <tr><td>Total Unreconciled</td><td><span t-esc="doc['unreconciled_total']"/></td></tr>
+                    <tr><td>Difference</td><td><span t-esc="doc['difference']"/></td></tr>
+                </table>
+
+                <!-- Reconciled Transactions -->
+                <h3>Reconciled Transactions</h3>
+                <table class="table table-sm">
+                    <tr><th>Date</th><th>Description</th><th>Partner</th><th>Amount</th><th>Ledger Move</th></tr>
+                    <t t-foreach="doc['reconciled']" t-as="line">
+                        <tr>
+                            <td><span t-esc="line['date']"/></td>
+                            <td><span t-esc="line['name']"/></td>
+                            <td><span t-esc="line['partner']"/></td>
+                            <td><span t-esc="line['amount']"/></td>
+                            <td><span t-esc="line['move']"/></td>
+                        </tr>
+                    </t>
+                </table>
+
+                <!-- Unreconciled Transactions -->
+                <h3>Unreconciled Transactions</h3>
+                <table class="table table-sm">
+                    <tr><th>Date</th><th>Description</th><th>Partner</th><th>Amount</th></tr>
+                    <t t-foreach="doc['unreconciled']" t-as="line">
+                        <tr>
+                            <td><span t-esc="line['date']"/></td>
+                            <td><span t-esc="line['name']"/></td>
+                            <td><span t-esc="line['partner']"/></td>
+                            <td><span t-esc="line['amount']"/></td>
+                        </tr>
+                    </t>
+                </table>
+            </div>
         </t>
     </template>
 </odoo>
