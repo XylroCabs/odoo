@@ -1,15 +1,27 @@
 <odoo>
+    <!-- Root Menu -->
     <menuitem id="menu_sacco_root" name="SACCO"/>
 
-    <menuitem id="menu_sacco_products" name="Loan Products"
-              parent="menu_sacco_root" action="action_sacco_products"/>
+    <!-- Loan Products -->
+    <menuitem id="menu_sacco_products"
+              name="Loan Products"
+              parent="menu_sacco_root"
+              action="action_sacco_products"/>
 
-    <menuitem id="menu_sacco_loans" name="Loans"
-              parent="menu_sacco_root" action="action_sacco_loans"/>
+    <!-- Loans -->
+    <menuitem id="menu_sacco_loans"
+              name="Loans"
+              parent="menu_sacco_root"
+              action="action_sacco_loans"/>
 
-    <menuitem id="menu_sacco_repayments" name="Repayments"
-              parent="menu_sacco_root" action="action_sacco_repayments"/>
+    <!-- Repayments -->
+    <menuitem id="menu_sacco_repayments"
+              name="Repayments"
+              parent="menu_sacco_root"
+              action="action_sacco_repayments"/>
 
-    <menuitem id="menu_sacco_reports" name="Reports"
+    <!-- Reports -->
+    <menuitem id="menu_sacco_reports"
+              name="Reports"
               parent="menu_sacco_root"/>
 </odoo>
