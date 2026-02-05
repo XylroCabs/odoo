@@ -51,7 +51,7 @@
         <field name="name">Ledger Entries</field>
         <field name="res_model">account.move</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('ref','!=',False)]</field>
+        <field name="domain">[('ref','ilike','GJ-')]</field>
     </record>
 
     <!-- Menu entry under Unified Accounting -->
