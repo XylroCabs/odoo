@@ -1,0 +1,31 @@
+<odoo>
+    <record id="view_bank_ledger_wizard_form" model="ir.ui.view">
+        <field name="name">bank.ledger.wizard.form</field>
+        <field name="model">bank.ledger.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Bank Ledger">
+                <sheet>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="journal_id"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_view_cash_book" type="object" string="View Cash Book" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bank_ledger_wizard" model="ir.actions.act_window">
+        <field name="name">Bank Ledger</field>
+        <field name="res_model">bank.ledger.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_bank_ledger_wizard" name="Bank Ledger"
+              parent="menu_account_merge_root" action="action_bank_ledger_wizard"/>
+</odoo>
