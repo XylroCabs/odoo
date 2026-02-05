@@ -11,7 +11,7 @@
     'website': 'https://smarternow-data-venture.odoo.com',  # replace with your actual site if different
     'license': 'LGPL-3',
     'category': 'Accounting',
-    'depends': ['sale', 'purchase', 'account', 'account_asset'],
+    'depends': ['base', 'account'],
     'data': [
         # Security
         'security/ir.model.access.csv',
