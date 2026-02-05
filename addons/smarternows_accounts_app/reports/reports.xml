@@ -48,4 +48,14 @@
         name="smarternows_accounts_app.trial_balance_template"
         file="smarternows_accounts_app.trial_balance_template"
     />
+    
+    <report
+    id="action_report_bank_reconciliation"
+    model="account.bank.statement"
+    string="Bank Reconciliation Report"
+    report_type="qweb-pdf"
+    name="smarternows_accounts_app.bank_reconciliation_template"
+    file="smarternows_accounts_app.bank_reconciliation_template"
+    />
+
 </odoo>
