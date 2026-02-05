@@ -1,5 +1,4 @@
 from odoo import models, fields, api
-from datetime import timedelta
 
 class SaccoRepaymentSchedule(models.Model):
     _name = 'sacco.repayment.schedule'
