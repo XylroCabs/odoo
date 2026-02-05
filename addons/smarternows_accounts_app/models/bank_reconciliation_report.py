@@ -1,4 +1,5 @@
 from odoo import models, fields
+from odoo.exceptions import UserError
 
 class BankReconciliationReportWizard(models.TransientModel):
     _name = 'bank.reconciliation.report.wizard'
@@ -32,6 +33,15 @@ class BankReconciliationReportWizard(models.TransientModel):
         reconciled_total = sum(line['amount'] for line in reconciled)
         unreconciled_total = sum(line['amount'] for line in unreconciled)
         difference = closing_balance - (opening_balance + reconciled_total + unreconciled_total)
+
+        # Automatic check
+        if abs(difference) > 0.01:
+            raise UserError(
+                "Reconciliation imbalance detected!\n"
+                f"Opening: {opening_balance}, Closing: {closing_balance}, "
+                f"Reconciled: {reconciled_total}, Unreconciled: {unreconciled_total}, "
+                f"Difference: {difference}"
+            )
 
         return {
             'statement': self.statement_id.name,
