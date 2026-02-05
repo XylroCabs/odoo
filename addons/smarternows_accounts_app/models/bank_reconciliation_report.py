@@ -25,9 +25,22 @@ class BankReconciliationReportWizard(models.TransientModel):
                     'partner': line.partner_id.name if line.partner_id else '',
                     'amount': line.amount,
                 })
+
+        # Summary section
+        opening_balance = self.statement_id.balance_start
+        closing_balance = self.statement_id.balance_end_real
+        reconciled_total = sum(line['amount'] for line in reconciled)
+        unreconciled_total = sum(line['amount'] for line in unreconciled)
+        difference = closing_balance - (opening_balance + reconciled_total + unreconciled_total)
+
         return {
             'statement': self.statement_id.name,
             'date': self.statement_id.date,
+            'opening_balance': opening_balance,
+            'closing_balance': closing_balance,
+            'reconciled_total': reconciled_total,
+            'unreconciled_total': unreconciled_total,
+            'difference': difference,
             'reconciled': reconciled,
             'unreconciled': unreconciled,
         }
