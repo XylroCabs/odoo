@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_profit_loss_wizard_form" model="ir.ui.view">
+        <field name="name">profit.loss.wizard.form</field>
+        <field name="model">profit.loss.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Profit & Loss Report">
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button string="Print Profit & Loss" type="object" name="action_generate_profit_loss" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
