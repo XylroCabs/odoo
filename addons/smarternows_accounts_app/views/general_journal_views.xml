@@ -1,16 +1,4 @@
 <odoo>
-    <record id="view_general_journal_tree" model="ir.ui.view">
-        <field name="name">general.journal.tree</field>
-        <field name="model">general.journal</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="name"/>
-                <field name="date"/>
-                <field name="journal_id"/>
-            </tree>
-        </field>
-    </record>
-
     <record id="view_general_journal_form" model="ir.ui.view">
         <field name="name">general.journal.form</field>
         <field name="model">general.journal</field>
@@ -21,6 +9,7 @@
                         <field name="name"/>
                         <field name="date"/>
                         <field name="journal_id"/>
+                        <field name="move_id" readonly="1"/>
                     </group>
                     <notebook>
                         <page string="Lines">
@@ -36,16 +25,11 @@
                         </page>
                     </notebook>
                 </sheet>
+                <footer>
+                    <button name="action_post" type="object" string="Post to Ledger" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
             </form>
         </field>
     </record>
-
-    <record id="action_general_journal" model="ir.actions.act_window">
-        <field name="name">General Journal</field>
-        <field name="res_model">general.journal</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <menuitem id="menu_general_journal" name="General Journal"
-              parent="menu_account_merge_root" action="action_general_journal"/>
 </odoo>
