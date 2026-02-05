@@ -6,31 +6,44 @@ class SaccoRepayment(models.Model):
 
     loan_id = fields.Many2one('sacco.loan', required=True)
     date = fields.Date(default=fields.Date.today)
-    amount = fields.Float(required=True)
+    principal_amount = fields.Float(required=True)
+    interest_amount = fields.Float(default=0.0)
     journal_entry_id = fields.Many2one('account.move', string="Journal Entry")
 
     def action_post_repayment(self):
         for repayment in self:
             loan = repayment.loan_id
             product = loan.loan_product_id
+            total_amount = repayment.principal_amount + repayment.interest_amount
+
             move_vals = {
                 'ref': f'Loan Repayment {loan.member_id.name}',
                 'date': repayment.date,
                 'journal_id': product.journal_id.id,
                 'line_ids': [
+                    # Debit Bank (total received)
                     (0, 0, {
                         'name': 'Bank',
                         'account_id': product.journal_id.default_account_id.id,
                         'partner_id': loan.member_id.id,
-                        'debit': repayment.amount,
+                        'debit': total_amount,
                         'credit': 0.0,
                     }),
+                    # Credit Loan Receivable (principal portion)
                     (0, 0, {
-                        'name': 'Loan Receivable',
+                        'name': 'Loan Principal',
                         'account_id': product.receivable_account_id.id,
                         'partner_id': loan.member_id.id,
                         'debit': 0.0,
-                        'credit': repayment.amount,
+                        'credit': repayment.principal_amount,
+                    }),
+                    # Credit Interest Income (interest portion)
+                    (0, 0, {
+                        'name': 'Loan Interest',
+                        'account_id': product.interest_income_account_id.id,
+                        'partner_id': loan.member_id.id,
+                        'debit': 0.0,
+                        'credit': repayment.interest_amount,
                     }),
                 ]
             }
