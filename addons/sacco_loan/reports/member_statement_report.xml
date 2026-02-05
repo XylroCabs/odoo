@@ -1,0 +1,76 @@
+<odoo>
+    <!-- Report Action -->
+    <report
+        id="report_sacco_member_statement"
+        model="res.partner"
+        string="Member Statement"
+        report_type="qweb-pdf"
+        name="sacco_loan.report_member_statement"
+        file="sacco_loan.report_member_statement"
+    />
+
+    <!-- QWeb Template -->
+    <template id="report_member_statement">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="member">
+                <div class="page">
+                    <h2>Member Loan Statement</h2>
+                    <p><strong>Member:</strong> <t t-esc="member.name"/></p>
+                    <p><strong>Membership No:</strong> <t t-esc="member.ref"/></p>
+                    <hr/>
+
+                    <h3>Loans</h3>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Amount</th>
+                                <th>Term</th>
+                                <th>Interest Rate</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="member.sacco_loan_ids" t-as="loan">
+                                <tr>
+                                    <td><t t-esc="loan.loan_product_id.name"/></td>
+                                    <td><t t-esc="loan.amount"/></td>
+                                    <td><t t-esc="loan.term_months"/></td>
+                                    <td><t t-esc="loan.interest_rate"/>%</td>
+                                    <td><t t-esc="loan.state"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <h3>Repayment Schedule</h3>
+                    <t t-foreach="member.sacco_loan_ids" t-as="loan">
+                        <h4><t t-esc="loan.loan_product_id.name"/> Loan</h4>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Due Date</th>
+                                    <th>Principal</th>
+                                    <th>Interest</th>
+                                    <th>Total</th>
+                                    <th>Paid</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="loan.schedule_ids" t-as="line">
+                                    <tr>
+                                        <td><t t-esc="line.due_date"/></td>
+                                        <td><t t-esc="line.principal_amount"/></td>
+                                        <td><t t-esc="line.interest_amount"/></td>
+                                        <td><t t-esc="line.total_amount"/></td>
+                                        <td><t t-esc="line.paid"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
