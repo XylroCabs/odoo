@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_cash_flow_wizard_form" model="ir.ui.view">
+        <field name="name">cash.flow.wizard.form</field>
+        <field name="model">cash.flow.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Cash Flow Report">
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button string="Print Cash Flow" type="object" name="action_generate_cash_flow" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
