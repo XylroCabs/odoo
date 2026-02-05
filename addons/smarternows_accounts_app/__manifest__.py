@@ -43,9 +43,6 @@
         # Data
         'data/bank_journal.xml',
     ],
-    'demo': [
-        'demo/demo.xml',
-    ],
     'images': [
         'static/description/icon.png',
         'static/description/banner.png',
