@@ -1,0 +1,51 @@
+<odoo>
+    <!-- Profit & Loss Report -->
+    <report
+        id="action_report_profit_loss"
+        model="account.move.line"
+        string="Profit & Loss"
+        report_type="qweb-pdf"
+        name="smarternows_accounts_app.profit_loss_template"
+        file="smarternows_accounts_app.profit_loss_template"
+    />
+
+    <!-- Balance Sheet Report -->
+    <report
+        id="action_report_balance_sheet"
+        model="account.move.line"
+        string="Balance Sheet"
+        report_type="qweb-pdf"
+        name="smarternows_accounts_app.balance_sheet_template"
+        file="smarternows_accounts_app.balance_sheet_template"
+    />
+
+    <!-- Cash Flow Report -->
+    <report
+        id="action_report_cash_flow"
+        model="account.move.line"
+        string="Cash Flow"
+        report_type="qweb-pdf"
+        name="smarternows_accounts_app.cash_flow_template"
+        file="smarternows_accounts_app.cash_flow_template"
+    />
+
+    <!-- Asset Valuation Report -->
+    <report
+        id="action_report_asset_valuation"
+        model="account.move.line"
+        string="Asset Valuation"
+        report_type="qweb-pdf"
+        name="smarternows_accounts_app.asset_valuation_template"
+        file="smarternows_accounts_app.asset_valuation_template"
+    />
+
+    <!-- Trial Balance Report -->
+    <report
+        id="action_report_trial_balance"
+        model="account.move.line"
+        string="Trial Balance"
+        report_type="qweb-pdf"
+        name="smarternows_accounts_app.trial_balance_template"
+        file="smarternows_accounts_app.trial_balance_template"
+    />
+</odoo>
