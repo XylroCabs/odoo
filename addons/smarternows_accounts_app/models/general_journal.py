@@ -11,6 +11,16 @@ class GeneralJournal(models.Model):
     line_ids = fields.One2many('general.journal.line', 'journal_id', string="Journal Lines")
     move_id = fields.Many2one('account.move', string="Posted Move", readonly=True)
 
+    def action_view_move(self):
+        """Open the linked account.move entry""" 
+        self.ensure_one() 
+        return { 
+            'type': 'ir.actions.act_window', 
+            'res_model': 'account.move', 
+            'view_mode': 'form', 
+            'res_id': self.move_id.id, 
+        }
+
     @api.constrains('line_ids')
     def _check_balance(self):
         for journal in self:
