@@ -1,0 +1,25 @@
+<odoo>
+    <template id="bank_reconciliation_template">
+        <t t-call="web.html_container">
+            <t t-foreach="doc.reconciled" t-as="line">
+                <div>
+                    <strong>Reconciled:</strong>
+                    <span t-esc="line['date']"/> -
+                    <span t-esc="line['name']"/> -
+                    <span t-esc="line['partner']"/> -
+                    <span t-esc="line['amount']"/> -
+                    <span t-esc="line['move']"/>
+                </div>
+            </t>
+            <t t-foreach="doc.unreconciled" t-as="line">
+                <div>
+                    <strong>Unreconciled:</strong>
+                    <span t-esc="line['date']"/> -
+                    <span t-esc="line['name']"/> -
+                    <span t-esc="line['partner']"/> -
+                    <span t-esc="line['amount']"/>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
