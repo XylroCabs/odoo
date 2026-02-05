@@ -1,0 +1,10 @@
+<odoo>
+    <report
+        id="action_report_trial_balance"
+        model="account.move.line"
+        string="Trial Balance"
+        report_type="qweb-pdf"
+        name="smarternows_accounts_app.trial_balance_template"
+        file="smarternows_accounts_app.trial_balance_template"
+    />
+</odoo>
