@@ -8,7 +8,7 @@
     """,
     'author': 'Jonathan Karimi Kiranga',
     'maintainer': 'Jonathan Karimi Kiranga',
-    'website': 'https://smarternows.com',  # replace with your actual site if different
+    'website': 'https://smarternow-data-venture.odoo.com',  # replace with your actual site if different
     'license': 'LGPL-3',
     'category': 'Accounting',
     'depends': ['sale', 'purchase', 'account', 'account_asset'],
