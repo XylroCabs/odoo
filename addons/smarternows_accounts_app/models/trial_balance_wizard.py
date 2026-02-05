@@ -7,13 +7,20 @@ class TrialBalanceWizard(models.TransientModel):
     date_from = fields.Date(string="Start Date", required=True)
     date_to = fields.Date(string="End Date", required=True)
 
+    def get_trial_balance_lines(self):
+        domain = [
+            ('date', '>=', self.date_from),
+            ('date', '<=', self.date_to),
+            ('move_id.state', '=', 'posted'),
+        ]
+        return self.env['account.move.line'].read_group(
+            domain,
+            ['debit:sum', 'credit:sum', 'balance:sum'],
+            ['account_id']
+        )
+
     def action_generate_trial_balance(self):
-        return {
-            'type': 'ir.actions.report',
-            'report_name': 'smarternows_accounts_app.trial_balance_template',
-            'report_type': 'qweb-pdf',
-            'context': {
+        data = {'lines': self.get_trial_balance_lines(),
                 'date_from': self.date_from,
-                'date_to': self.date_to,
-            }
-        }
+                'date_to': self.date_to}
+        return self.env.ref('smarternows_accounts_app.action_report_trial_balance').report_action(None, data=data)
