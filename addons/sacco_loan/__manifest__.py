@@ -12,6 +12,7 @@
     'views/loan_views.xml',
     'views/repayment_views.xml',
     'reports/loan_report.xml',
+    'reports/member_statement_report.xml', # ✅ new report
     ],
     'installable': True,
     'application': True,
