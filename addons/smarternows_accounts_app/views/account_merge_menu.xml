@@ -10,6 +10,22 @@
     <menuitem id="menu_reports" name="Reports" parent="menu_account_merge_root"/>
 
     <!-- Profit & Loss Wizard -->
+    <record id="view_profit_loss_wizard_form" model="ir.ui.view">
+        <field name="name">profit.loss.wizard.form</field>
+        <field name="model">profit.loss.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Profit & Loss Report">
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button string="Print Profit & Loss" type="object" name="action_generate_profit_loss" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
     <record id="action_profit_loss_wizard" model="ir.actions.act_window">
         <field name="name">Profit & Loss Report</field>
         <field name="res_model">profit.loss.wizard</field>
@@ -20,6 +36,22 @@
               parent="menu_reports" action="action_profit_loss_wizard"/>
 
     <!-- Cash Flow Wizard -->
+    <record id="view_cash_flow_wizard_form" model="ir.ui.view">
+        <field name="name">cash.flow.wizard.form</field>
+        <field name="model">cash.flow.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Cash Flow Report">
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button string="Print Cash Flow" type="object" name="action_generate_cash_flow" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
     <record id="action_cash_flow_wizard" model="ir.actions.act_window">
         <field name="name">Cash Flow Report</field>
         <field name="res_model">cash.flow.wizard</field>
@@ -30,6 +62,22 @@
               parent="menu_reports" action="action_cash_flow_wizard"/>
 
     <!-- Balance Sheet Wizard -->
+    <record id="view_balance_sheet_wizard_form" model="ir.ui.view">
+        <field name="name">balance.sheet.wizard.form</field>
+        <field name="model">balance.sheet.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Balance Sheet Report">
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button string="Print Balance Sheet" type="object" name="action_generate_balance_sheet" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
     <record id="action_balance_sheet_wizard" model="ir.actions.act_window">
         <field name="name">Balance Sheet Report</field>
         <field name="res_model">balance.sheet.wizard</field>
@@ -40,6 +88,22 @@
               parent="menu_reports" action="action_balance_sheet_wizard"/>
 
     <!-- Asset Valuation Wizard -->
+    <record id="view_asset_valuation_wizard_form" model="ir.ui.view">
+        <field name="name">asset.valuation.wizard.form</field>
+        <field name="model">asset.valuation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Asset Valuation Report">
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button string="Print Asset Valuation" type="object" name="action_generate_asset_valuation" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
     <record id="action_asset_valuation_wizard" model="ir.actions.act_window">
         <field name="name">Asset Valuation Report</field>
         <field name="res_model">asset.valuation.wizard</field>
@@ -49,4 +113,3 @@
     <menuitem id="menu_asset_valuation_wizard" name="Asset Valuation"
               parent="menu_reports" action="action_asset_valuation_wizard"/>
 </odoo>
-
