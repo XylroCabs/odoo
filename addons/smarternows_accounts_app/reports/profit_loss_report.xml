@@ -1,10 +1,10 @@
 <odoo>
     <report
         id="action_report_profit_loss"
-        model="account.move"
-        string="Profit & Loss"
+        model="account.merge"
+        string="Profit & Loss Report"
         report_type="qweb-pdf"
-        name="smarternows_accounts_app.profit_loss_report"
-        file="smarternows_accounts_app.profit_loss_report"
+        name="smarternows_accounts_app.profit_loss_template"
+        file="smarternows_accounts_app.profit_loss_template"
     />
 </odoo>
