@@ -1,0 +1,11 @@
+<odoo>
+    <template id="profit_loss_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <h2>Profit & Loss Report</h2>
+                <p>Date: <t t-esc="doc.date"/></p>
+                <p>Amount: <t t-esc="doc.amount"/></p>
+            </t>
+        </t>
+    </template>
+</odoo>
