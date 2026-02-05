@@ -1,0 +1,14 @@
+<odoo>
+    <record id="view_account_merge_tree" model="ir.ui.view">
+        <field name="name">account.merge.tree</field>
+        <field name="model">account.merge</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="transaction_type"/>
+                <field name="amount"/>
+                <field name="date"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
