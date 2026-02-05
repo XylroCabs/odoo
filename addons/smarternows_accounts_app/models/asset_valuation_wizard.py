@@ -4,16 +4,21 @@ class AssetValuationWizard(models.TransientModel):
     _name = 'asset.valuation.wizard'
     _description = 'Asset Valuation Wizard'
 
-    date_from = fields.Date(string="Start Date", required=True)
     date_to = fields.Date(string="End Date", required=True)
 
+    def get_asset_valuation_lines(self):
+        domain = [
+            ('date', '<=', self.date_to),
+            ('move_id.state', '=', 'posted'),
+            ('account_id.user_type_id.type', '=', 'asset'),
+        ]
+        return self.env['account.move.line'].read_group(
+            domain,
+            ['debit:sum', 'credit:sum', 'balance:sum'],
+            ['account_id']
+        )
+
     def action_generate_asset_valuation(self):
-        return {
-            'type': 'ir.actions.report',
-            'report_name': 'smarternows_accounts_app.asset_valuation_template',
-            'report_type': 'qweb-pdf',
-            'context': {
-                'date_from': self.date_from,
-                'date_to': self.date_to,
-            }
-        }
+        data = {'lines': self.get_asset_valuation_lines(),
+                'date_to': self.date_to}
+        return self.env.ref('smarternows_accounts_app.action_report_asset_valuation').report_action(None, data=data)
