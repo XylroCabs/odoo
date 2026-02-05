@@ -13,7 +13,35 @@
     'category': 'Accounting',
     'depends': ['sale', 'purchase', 'account', 'account_asset'],
     'data': [
-       'security/ir.model.access.csv', 'views/account_merge_views.xml', 'views/account_merge_menu.xml', 'views/account_merge_ui.xml', 'views/report_wizard.xml', 'views/profit_loss_wizard.xml', 'views/cash_flow_wizard.xml', 'views/balance_sheet_wizard.xml', 'views/asset_valuation_wizard.xml', 'views/trial_balance_wizard.xml', 'views/general_journal_views.xml', 'reports/reports.xml', 'reports/profit_loss_template.xml', 'reports/balance_sheet_template.xml', 'reports/cash_flow_template.xml', 'reports/asset_valuation_template.xml', 'reports/trial_balance_template.xml',
+        # Security
+        'security/ir.model.access.csv',
+
+        # Views
+        'views/account_merge_views.xml',
+        'views/account_merge_menu.xml',
+        'views/account_merge_ui.xml',
+        'views/report_wizard.xml',
+        'views/profit_loss_wizard.xml',
+        'views/cash_flow_wizard.xml',
+        'views/balance_sheet_wizard.xml',
+        'views/asset_valuation_wizard.xml',
+        'views/trial_balance_wizard.xml',
+        'views/general_journal_views.xml',
+        'views/general_journal_move_views.xml',
+        'views/bank_ledger_views.xml',
+        'views/bank_reconciliation_views.xml',
+
+        # Reports
+        'reports/reports.xml',
+        'reports/profit_loss_template.xml',
+        'reports/balance_sheet_template.xml',
+        'reports/cash_flow_template.xml',
+        'reports/asset_valuation_template.xml',
+        'reports/trial_balance_template.xml',
+        'reports/bank_reconciliation_template.xml',
+
+        # Data
+        'data/bank_journal.xml',
     ],
     'demo': [
         'demo/demo.xml',
