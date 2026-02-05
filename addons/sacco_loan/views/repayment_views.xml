@@ -1,0 +1,47 @@
+<odoo>
+    <!-- Repayment Action -->
+    <record id="action_sacco_repayments" model="ir.actions.act_window">
+        <field name="name">Repayments</field>
+        <field name="res_model">sacco.repayment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Repayment Tree View -->
+    <record id="view_sacco_repayment_tree" model="ir.ui.view">
+        <field name="name">sacco.repayment.tree</field>
+        <field name="model">sacco.repayment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="loan_id"/>
+                <field name="schedule_id"/>
+                <field name="date"/>
+                <field name="principal_amount"/>
+                <field name="interest_amount"/>
+                <field name="journal_entry_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Repayment Form View -->
+    <record id="view_sacco_repayment_form" model="ir.ui.view">
+        <field name="name">sacco.repayment.form</field>
+        <field name="model">sacco.repayment</field>
+        <field name="arch" type="xml">
+            <form string="Repayment">
+                <sheet>
+                    <group>
+                        <field name="loan_id"/>
+                        <field name="schedule_id"/>
+                        <field name="date"/>
+                        <field name="principal_amount"/>
+                        <field name="interest_amount"/>
+                        <field name="journal_entry_id" readonly="1"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_post_repayment" type="object" string="Post Repayment" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
