@@ -5,6 +5,7 @@ class SaccoRepayment(models.Model):
     _description = 'Loan Repayment'
 
     loan_id = fields.Many2one('sacco.loan', required=True)
+    schedule_id = fields.Many2one('sacco.repayment.schedule')
     date = fields.Date(default=fields.Date.today)
     principal_amount = fields.Float(required=True)
     interest_amount = fields.Float(default=0.0)
@@ -21,7 +22,7 @@ class SaccoRepayment(models.Model):
                 'date': repayment.date,
                 'journal_id': product.journal_id.id,
                 'line_ids': [
-                    # Debit Bank (total received)
+                    # Debit Bank
                     (0, 0, {
                         'name': 'Bank',
                         'account_id': product.journal_id.default_account_id.id,
@@ -29,7 +30,7 @@ class SaccoRepayment(models.Model):
                         'debit': total_amount,
                         'credit': 0.0,
                     }),
-                    # Credit Loan Receivable (principal portion)
+                    # Credit Loan Receivable
                     (0, 0, {
                         'name': 'Loan Principal',
                         'account_id': product.receivable_account_id.id,
@@ -37,7 +38,7 @@ class SaccoRepayment(models.Model):
                         'debit': 0.0,
                         'credit': repayment.principal_amount,
                     }),
-                    # Credit Interest Income (interest portion)
+                    # Credit Interest Income
                     (0, 0, {
                         'name': 'Loan Interest',
                         'account_id': product.interest_income_account_id.id,
@@ -50,3 +51,5 @@ class SaccoRepayment(models.Model):
             move = self.env['account.move'].create(move_vals)
             move.action_post()
             repayment.write({'journal_entry_id': move.id})
+            if repayment.schedule_id:
+                repayment.schedule_id.paid = True
