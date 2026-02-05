@@ -1,0 +1,12 @@
+<odoo>
+    <!-- Default Bank Journal -->
+    <record id="bank_journal_main" model="account.journal">
+        <field name="name">Main Bank</field>
+        <field name="code">BNK1</field>
+        <field name="type">bank</field>
+        <field name="company_id" ref="base.main_company"/>
+        <!-- Link to liquidity accounts -->
+        <field name="default_debit_account_id" ref="account.data_account_type_liquidity"/>
+        <field name="default_credit_account_id" ref="account.data_account_type_liquidity"/>
+    </record>
+</odoo>
