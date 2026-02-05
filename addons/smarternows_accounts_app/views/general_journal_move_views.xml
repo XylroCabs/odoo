@@ -1,0 +1,60 @@
+<odoo>
+    <!-- Tree view of posted moves -->
+    <record id="view_general_journal_move_tree" model="ir.ui.view">
+        <field name="name">general.journal.move.tree</field>
+        <field name="model">account.move</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="ref"/>
+                <field name="date"/>
+                <field name="journal_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view (reuse Odoo’s account.move form) -->
+    <record id="view_general_journal_move_form" model="ir.ui.view">
+        <field name="name">general.journal.move.form</field>
+        <field name="model">account.move</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="ref"/>
+                        <field name="date"/>
+                        <field name="journal_id"/>
+                        <field name="state"/>
+                    </group>
+                    <notebook>
+                        <page string="Lines">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="account_id"/>
+                                    <field name="debit"/>
+                                    <field name="credit"/>
+                                    <field name="partner_id"/>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open posted moves -->
+    <record id="action_general_journal_moves" model="ir.actions.act_window">
+        <field name="name">Ledger Entries</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('ref','!=',False)]</field>
+    </record>
+
+    <!-- Menu entry under Unified Accounting -->
+    <menuitem id="menu_general_journal_moves" name="Ledger Entries"
+              parent="menu_account_merge_root" action="action_general_journal_moves"/>
+</odoo>
