@@ -1,4 +1,5 @@
 <odoo>
-    <menuitem id="menu_account_merge_root" name="Company Reports"/>
-    <menuitem id="menu_account_merge" name="Unified Accounts" parent="menu_account_merge_root"/>
+    <menuitem id="menu_account_merge_root" name="Unified Accounting"/>
+    <menuitem id="menu_account_merge" name="Transactions" parent="menu_account_merge_root" action="action_account_merge"/>
+    <menuitem id="menu_reports" name="Reports" parent="menu_account_merge_root"/>
 </odoo>
