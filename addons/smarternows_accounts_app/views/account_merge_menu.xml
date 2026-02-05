@@ -1,5 +1,52 @@
 <odoo>
+    <!-- Root menu -->
     <menuitem id="menu_account_merge_root" name="Unified Accounting"/>
-    <menuitem id="menu_account_merge" name="Transactions" parent="menu_account_merge_root" action="action_account_merge"/>
+
+    <!-- Transactions -->
+    <menuitem id="menu_account_merge" name="Transactions"
+              parent="menu_account_merge_root" action="action_account_merge"/>
+
+    <!-- Reports section -->
     <menuitem id="menu_reports" name="Reports" parent="menu_account_merge_root"/>
+
+    <!-- Profit & Loss Wizard -->
+    <record id="action_profit_loss_wizard" model="ir.actions.act_window">
+        <field name="name">Profit & Loss Report</field>
+        <field name="res_model">profit.loss.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_profit_loss_wizard" name="Profit & Loss"
+              parent="menu_reports" action="action_profit_loss_wizard"/>
+
+    <!-- Cash Flow Wizard -->
+    <record id="action_cash_flow_wizard" model="ir.actions.act_window">
+        <field name="name">Cash Flow Report</field>
+        <field name="res_model">cash.flow.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_cash_flow_wizard" name="Cash Flow"
+              parent="menu_reports" action="action_cash_flow_wizard"/>
+
+    <!-- Balance Sheet Wizard -->
+    <record id="action_balance_sheet_wizard" model="ir.actions.act_window">
+        <field name="name">Balance Sheet Report</field>
+        <field name="res_model">balance.sheet.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_balance_sheet_wizard" name="Balance Sheet"
+              parent="menu_reports" action="action_balance_sheet_wizard"/>
+
+    <!-- Asset Valuation Wizard -->
+    <record id="action_asset_valuation_wizard" model="ir.actions.act_window">
+        <field name="name">Asset Valuation Report</field>
+        <field name="res_model">asset.valuation.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_asset_valuation_wizard" name="Asset Valuation"
+              parent="menu_reports" action="action_asset_valuation_wizard"/>
 </odoo>
+
