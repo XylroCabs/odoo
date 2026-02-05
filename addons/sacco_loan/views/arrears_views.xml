@@ -1,0 +1,25 @@
+<odoo>
+    <!-- Arrears Action -->
+    <record id="action_sacco_arrears" model="ir.actions.act_window">
+        <field name="name">Arrears Report</field>
+        <field name="res_model">sacco.arrears.report</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Arrears Tree View -->
+    <record id="view_sacco_arrears_tree" model="ir.ui.view">
+        <field name="name">sacco.arrears.report.tree</field>
+        <field name="model">sacco.arrears.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="member_id"/>
+                <field name="loan_id"/>
+                <field name="due_date"/>
+                <field name="principal_amount"/>
+                <field name="interest_amount"/>
+                <field name="total_amount"/>
+                <field name="days_overdue"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
