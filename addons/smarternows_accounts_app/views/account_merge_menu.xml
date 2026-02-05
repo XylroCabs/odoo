@@ -1,0 +1,4 @@
+<odoo>
+    <menuitem id="menu_account_merge_root" name="Company Reports"/>
+    <menuitem id="menu_account_merge" name="Unified Accounts" parent="menu_account_merge_root"/>
+</odoo>
