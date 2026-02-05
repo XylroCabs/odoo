@@ -4,16 +4,23 @@ class BalanceSheetWizard(models.TransientModel):
     _name = 'balance.sheet.wizard'
     _description = 'Balance Sheet Wizard'
 
-    date_from = fields.Date(string="Start Date", required=True)
+    date_from = fields.Date(string="Start Date")
     date_to = fields.Date(string="End Date", required=True)
 
+    def get_balance_sheet_lines(self):
+        domain = [
+            ('date', '<=', self.date_to),
+            ('move_id.state', '=', 'posted'),
+            ('account_id.user_type_id.type', 'in', ['asset', 'liability', 'equity']),
+        ]
+        return self.env['account.move.line'].read_group(
+            domain,
+            ['debit:sum', 'credit:sum', 'balance:sum'],
+            ['account_id']
+        )
+
     def action_generate_balance_sheet(self):
-        return {
-            'type': 'ir.actions.report',
-            'report_name': 'smarternows_accounts_app.balance_sheet_template',
-            'report_type': 'qweb-pdf',
-            'context': {
+        data = {'lines': self.get_balance_sheet_lines(),
                 'date_from': self.date_from,
-                'date_to': self.date_to,
-            }
-        }
+                'date_to': self.date_to}
+        return self.env.ref('smarternows_accounts_app.action_report_balance_sheet').report_action(None, data=data)
