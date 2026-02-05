@@ -6,12 +6,12 @@
     'author': 'Your SACCO',
     'depends': ['base', 'account', 'contacts'],
     'data': [
-        'security/ir.model.access.csv',
-        'views/loan_product_views.xml',
-        'views/loan_views.xml',
-        'views/repayment_views.xml',
-        'views/menu.xml',
-        'reports/loan_report.xml',
+    'security/ir.model.access.csv',
+    'views/menu.xml',                # ✅ correct path
+    'views/loan_product_views.xml',
+    'views/loan_views.xml',
+    'views/repayment_views.xml',
+    'reports/loan_report.xml',
     ],
     'installable': True,
     'application': True,
